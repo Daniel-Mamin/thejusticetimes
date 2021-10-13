@@ -3,20 +3,23 @@ import React from 'react';
 import  HeaderGuest from './HeaderGuest';
 import  HeaderUser from './HeaderUser';
 
-function Header() {
+import './Header.scss';
+import Logo from '../../assets/img/logoBlack.svg';
+
+const Header = () => {
     return (
         <header className="header">
             <div className="container">
                 <div className="header__wrapper">
                     <div className="header__title">
-                        <h1>The Justice Times</h1>
+                        <img src={Logo} alt="Logo"/>
                     </div>
-                    <HeaderUser/>
+                    <HeaderGuest/>
                 </div>
             </div>
             <hr />
         </header>
     )
-}
+};
 
 export default Header;
