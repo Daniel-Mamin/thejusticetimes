@@ -28,7 +28,7 @@ const allArticles = [
             'The two worlds continued to coexist independently. Each recognising the good in the other — the power of industrialism ' +
             'and the humanity of craftsmanship. This was the second transition that would strip typography of a part of its humanity. ' +
             'We have to go 500 years back in time to meet the first one.',
-        count: 0,
+        count: 5000,
         category: 'Typography',
         image: Image_1
     },
