@@ -1,14 +1,28 @@
 import React from 'react';
+import {Route, Switch} from "react-router-dom";
 
-import { Header, Footer, MainPage } from './components';
+import { Header, Footer } from './components';
+
+import routes from "./routes/routes";
 
 import './App.scss';
 
 const App = () => {
   return (
-    <div>
+    <div className="all-content">
       <Header/>
-      <MainPage/>
+      <Switch>
+        {
+          routes.map((route, index) => (
+            <Route
+              key={index}
+              path={route.path}
+              exact={route.exact}
+              component={route.component}
+            />
+          ))
+        }
+      </Switch>
       <Footer/>
     </div>
   );

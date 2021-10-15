@@ -1,5 +1,11 @@
 @import 'assets/libs/normalize';
 
+.all-content {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
 .container {
     max-width: 1075px;
     width: 100%;
@@ -40,6 +46,8 @@
     }
 }
 .user-views {
+    display: flex;
+    align-items: center;
     img {
         width: 20px;
         height: 14px;

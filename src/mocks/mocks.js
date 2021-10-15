@@ -5,7 +5,6 @@ import Image_2 from '../assets/img/image-2.png';
 import Image_3 from '../assets/img/image-3.png';
 import Image_4 from '../assets/img/image-4.png';
 import Image_5 from '../assets/img/image-5.png';
-import Image_6 from '../assets/img/image-6.png';
 import UserPhoto from '../assets/img/userPhoto.png';
 
 const allArticles = [
@@ -142,7 +141,7 @@ const allArticles = [
             'We have to go 500 years back in time to meet the first one.',
         count: 700,
         category: 'Typography',
-        image: Image_6
+        image: Image_4
     },
     {
         id: 7,
@@ -232,7 +231,7 @@ const allArticles = [
             'We have to go 500 years back in time to meet the first one.',
         count: 450,
         category: 'Typography',
-        image: Image_6
+        image: Image_3
     },
     {
         id: 11,

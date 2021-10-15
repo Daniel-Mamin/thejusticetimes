@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import  HeaderGuest from './HeaderGuest';
 import  HeaderUser from './HeaderUser';
@@ -12,9 +13,11 @@ const Header = () => {
             <div className="container">
                 <div className="header__wrapper">
                     <div className="header__title">
-                        <img src={Logo} alt="Logo"/>
+                        <Link to="/">
+                          <img src={Logo} alt="Logo"/>
+                        </Link>
                     </div>
-                    <HeaderGuest/>
+                    <HeaderUser/>
                 </div>
             </div>
             <hr />
