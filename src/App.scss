@@ -65,3 +65,44 @@
     opacity: 0.3;
     pointer-events: none;
 }
+
+.form {
+    max-width: 400px;
+    width: 100%;
+    margin: auto;
+    &__label {
+        display: block;
+        margin-bottom: 12px;
+        font-size: 14px;
+        line-height: 14px;
+        color: #242424;
+    }
+    &__input {
+        width: 100%;
+        border: 1px solid #8C8C8C;
+        padding: 12px;
+        font-size: 16px;
+        margin-bottom: 4px;
+    }
+    &__error {
+        display: block;
+        font-size: 11px;
+        line-height: 14px;
+        color: #CF4949;
+        //margin-bottom: 24px;
+    }
+    p:not(:nth-child(1)) {
+        margin-top: 20px;
+    }
+    &__button {
+        width: 100%;
+        margin-top: 30px;
+        padding: 20px 0;
+        font-size: 16px;
+        line-height: 15px;
+        color: #FFFFFF;
+        background: #242424;
+        border: none;
+        cursor: pointer;
+    }
+}

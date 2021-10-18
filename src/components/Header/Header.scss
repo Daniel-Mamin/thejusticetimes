@@ -14,10 +14,12 @@
         border: 1px solid #000;
         cursor: pointer;
     }
-    &__btn:nth-child(2) {
-        color: #fff;
-        background-color: #242424;
+    &__link:nth-child(2) {
         margin-left: 25px;
+        button {
+            color: #fff;
+            background-color: #242424;
+        }
     }
     &__user {
         display: flex;
