@@ -5,6 +5,7 @@ import {
   NoMatch,
   LogIn,
   SingIn,
+  Profile,
 } from "../components";
 
 const routes = [
@@ -35,6 +36,12 @@ const routes = [
   {
     path: "/singin",
     component: SingIn,
+    exact: true,
+    withAuth: false,
+  },
+  {
+    path: "/profile",
+    component: Profile,
     exact: true,
     withAuth: false,
   },
