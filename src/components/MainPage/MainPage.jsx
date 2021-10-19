@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 
-import PopularArticles from "./PopularArticles";
-import AllArticles from "./AllArticles";
-import Pagination from "./Pagination";
+import PopularArticles from "./AllArticles/PopularArticles/PopularArticles";
+import AllArticles from "./AllArticles/AllArticles";
+import Pagination from "./Pagination/Pagination";
 
 import getSortedArray from "../../services/getSortedArray";
 
@@ -14,8 +14,7 @@ const MainPage = () => {
   const articlesPerPage = 6;
 
   useEffect(() => {
-    //    Будет запрос на статьи
-    setArticles(getSortedArray());
+    setArticles(JSON.parse(localStorage.getItem("ALL_ARTICLES")) || []);
   }, []);
 
   const lastArticleIndex = currentPage * articlesPerPage;
@@ -27,25 +26,33 @@ const MainPage = () => {
 
   return (
     <>
-      <main className="main">
-        <div className="container">
-          <div className="main__wrapper">
-            <PopularArticles />
-            <div className="main__popular">
-              <h1 className="main__popular-title">Popular articles</h1>
-              <div className="main__popular-content">
-                <AllArticles articles={currentArticles} />
-                <Pagination
-                  disabledPrev={currentPage}
-                  disabledNext={lastArticleIndex >= articles.length}
-                  nextPage={nextPage}
-                  prevPage={prevPage}
-                />
+      {articles.length != 0 ? (
+        <main className="main">
+          <div className="container">
+            <div className="main__wrapper">
+              <PopularArticles />
+              <div className="main__popular">
+                <h1 className="main__popular-title">Popular articles</h1>
+                <div className="main__popular-content">
+                  <AllArticles articles={currentArticles} />
+                  <Pagination
+                    disabledPrev={currentPage}
+                    disabledNext={lastArticleIndex >= articles.length}
+                    nextPage={nextPage}
+                    prevPage={prevPage}
+                  />
+                </div>
               </div>
             </div>
           </div>
+        </main>
+      ) : (
+        <div className="main__no-articles">
+          <div className="container">
+            <h1>No articles...</h1>
+          </div>
         </div>
-      </main>
+      )}
     </>
   );
 };

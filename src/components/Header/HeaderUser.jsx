@@ -1,7 +1,7 @@
 import React from "react";
-import { NavLink, Redirect } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
-const HeaderUser = () => {
+const HeaderUser = ({ setIdUser }) => {
   const userList = [
     {
       name: "All articles",
@@ -21,7 +21,10 @@ const HeaderUser = () => {
     },
   ];
 
-  const onRemoveKeys = () => localStorage.clear();
+  const onRemoveKeys = () => {
+    localStorage.removeItem("ID_USER");
+    setIdUser(null);
+  };
 
   return (
     <div className="header__user">

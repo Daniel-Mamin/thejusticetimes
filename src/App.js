@@ -1,20 +1,25 @@
 import React, { useEffect, useState } from "react";
-import { Redirect, Route, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 
 import { Header, Footer, ProtectedRoute } from "./components";
 
 import routes from "./routes/routes";
-
+import users from "./mocks/users";
+import getSortedArray from "./services/getSortedArray";
 import "./App.scss";
 
 const App = () => {
-  const [idUser, setIdUser] = useState(
-    localStorage.getItem("ID_USER") || false
-  );
+  const [idUser, setIdUser] = useState();
+
+  useEffect(() => setIdUser(localStorage.getItem("ID_USER")), [idUser]);
+  useEffect(() => {
+    localStorage.setItem("ALL_ARTICLES", JSON.stringify(getSortedArray()));
+    localStorage.setItem("ALL_USERS", JSON.stringify(users));
+  }, []);
 
   return (
     <div className="all-content">
-      <Header idUser={idUser} />
+      <Header idUser={idUser} setIdUser={setIdUser} />
       <Switch>
         {routes.map((route, index) =>
           route.withAuth ? (
@@ -30,12 +35,14 @@ const App = () => {
               key={index}
               path={route.path}
               exact={route.exact}
-              component={route.component}
+              render={() => (
+                <route.component idUser={idUser} setIdUser={setIdUser} />
+              )}
             />
           )
         )}
       </Switch>
-      <Footer idUser={idUser} />
+      <Footer idUser={idUser} setIdUser={setIdUser} />
     </div>
   );
 };

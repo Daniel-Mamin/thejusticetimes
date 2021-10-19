@@ -114,4 +114,11 @@
       cursor: pointer;
     }
   }
+  &__no-articles {
+    display: flex;
+    flex: 1;
+    h1 {
+      text-align: center;
+    }
+  }
 }

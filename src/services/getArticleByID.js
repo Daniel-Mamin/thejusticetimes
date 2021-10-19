@@ -1,6 +1,11 @@
-import allArticles from "../mocks/articles";
+const getArticleByID = (id) => {
+  const allArticles = JSON.parse(localStorage.getItem("ALL_ARTICLES"));
+  const allUsers = JSON.parse(localStorage.getItem("ALL_USERS"));
 
-const getArticleByID = (id) =>
-  allArticles.filter((article) => article.id == id);
+  const article = allArticles.filter((article) => article.id == id)[0];
+  const user = allUsers.find((user) => user.id == article.id_user);
+
+  return { article, user };
+};
 
 export default getArticleByID;

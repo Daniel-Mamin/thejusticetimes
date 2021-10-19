@@ -6,8 +6,10 @@ import getArticlesByIdUser from "../../services/getArticlesByIdUser";
 import "./MyArticles.scss";
 
 const MyArticles = () => {
-  const articles = getArticlesByIdUser("Ella Alderson");
-  const { avatar, author } = articles[0];
+  const {
+    articles,
+    user: { f_name, l_name, avatar, description },
+  } = getArticlesByIdUser();
 
   return (
     <div className="my-articles">
@@ -21,11 +23,8 @@ const MyArticles = () => {
             <div className="my-articles-user__info">
               <div className="my-articles-user__info-wrapper">
                 <img src={avatar} alt="user-avatar" />
-                <p>{author}</p>
-                <p>
-                  Pellentesque odio nisi, euismod in, pharetra a, ultricies in,
-                  diam. Sed arcu.
-                </p>
+                <p>{f_name}</p>
+                <p>{description}</p>
               </div>
             </div>
           </div>
@@ -33,12 +32,18 @@ const MyArticles = () => {
             {articles.length != 0 ? (
               <ul className="my-articles__list">
                 {articles.map((article) => (
-                  <Article key={article.id} {...article} />
+                  <Article
+                    key={article.id}
+                    {...article}
+                    avatar={avatar}
+                    l_name={l_name}
+                    f_name={f_name}
+                  />
                 ))}
               </ul>
             ) : (
               <div className="my-articles-content_no">
-                <h1>У Вас пока что ничего нет...</h1>
+                <h1>You have nothing yet...</h1>
               </div>
             )}
           </div>

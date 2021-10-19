@@ -7,7 +7,7 @@ import HeaderUser from "./HeaderUser";
 import "./Header.scss";
 import Logo from "../../assets/img/logoBlack.svg";
 
-const Header = ({ idUser }) => {
+const Header = ({ idUser, setIdUser }) => {
   return (
     <header className="header">
       <div className="container">
@@ -17,7 +17,7 @@ const Header = ({ idUser }) => {
               <img src={Logo} alt="Logo" />
             </Link>
           </div>
-          {idUser ? <HeaderUser /> : <HeaderGuest />}
+          {idUser ? <HeaderUser setIdUser={setIdUser} /> : <HeaderGuest />}
         </div>
       </div>
       <hr />

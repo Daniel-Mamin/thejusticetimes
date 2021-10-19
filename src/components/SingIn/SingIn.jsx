@@ -3,12 +3,10 @@ import { Redirect } from "react-router-dom";
 import * as yup from "yup";
 import { Formik } from "formik";
 
+import NoPhoto from "../../assets/img/noPhoto.png";
 import "./SingIn.scss";
-import users from "../../mocks/user";
 
-const SingIn = () => {
-  const [idUser, setIdUser] = useState();
-
+const SingIn = ({ idUser, setIdUser }) => {
   const validationSchema = yup.object().shape({
     first_name: yup
       .string()
@@ -30,20 +28,26 @@ const SingIn = () => {
   });
 
   const onSubmitForm = ({ first_name, last_name, email, password }) => {
-    const user = users.find((item) => item.email === email);
+    const users = JSON.parse(localStorage.getItem("ALL_USERS"));
+    const user = users.find((user) => user.email === email);
 
     if (user) {
       console.log("Пользователь найден!");
     } else {
       const newUser = {
         id: Date.now(),
-        first_name,
-        last_name,
+        f_name: first_name,
+        l_name: last_name,
         email,
         password,
+        description: `${first_name} odio nisi, euismod in, pharetra a, ultricies in, diam. Sed arcu.`,
+        avatar: NoPhoto,
       };
 
+      users.push(newUser);
+
       localStorage.setItem("NEW_USER", JSON.stringify(newUser));
+      localStorage.setItem("ALL_USERS", JSON.stringify(users));
       localStorage.setItem("ID_USER", newUser.id);
       setIdUser(newUser.id);
     }

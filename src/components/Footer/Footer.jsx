@@ -7,7 +7,7 @@ import FooterUser from "./FooterUser";
 import "./Footer.scss";
 import Logo from "../../assets/img/logoWhite.svg";
 
-const Footer = ({ idUser }) => {
+const Footer = ({ idUser, setIdUser }) => {
   return (
     <footer className="footer">
       <div className="container">
@@ -15,7 +15,7 @@ const Footer = ({ idUser }) => {
           <Link to="/">
             <img src={Logo} alt="Logo" />
           </Link>
-          {idUser ? <FooterUser /> : <FooterGuest />}
+          {idUser ? <FooterUser setIdUser={setIdUser} /> : <FooterGuest />}
         </div>
         <hr />
         <div className="footer__copyright">

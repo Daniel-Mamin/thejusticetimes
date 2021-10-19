@@ -1,14 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import { Formik } from "formik";
 import * as yup from "yup";
-import { Link, Redirect, Route } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
-import users from "../../mocks/user";
 import "./LogIn.scss";
 
-const LogIn = () => {
-  const [idUser, setIdUser] = useState();
-
+const LogIn = ({ idUser, setIdUser }) => {
   const validationSchema = yup.object().shape({
     email: yup
       .string()
@@ -22,15 +19,16 @@ const LogIn = () => {
   });
 
   const onSubmitForm = ({ email, password }) => {
+    const users = JSON.parse(localStorage.getItem("ALL_USERS"));
     const user = users.find(
-      (item) => item.email === email && item.password === password
+      (user) => user.email === email && user.password === password
     );
 
     if (user) {
       localStorage.setItem("ID_USER", user.id);
       setIdUser(user.id);
     } else {
-      console.log(user);
+      console.log("Пользователь не найден!");
     }
   };
 

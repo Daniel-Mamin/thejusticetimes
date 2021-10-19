@@ -1,7 +1,7 @@
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
-const FooterUser = () => {
+const FooterUser = ({ setIdUser }) => {
   const userList = [
     {
       name: "All articles",
@@ -21,7 +21,10 @@ const FooterUser = () => {
     },
   ];
 
-  const onRemoveKeys = () => localStorage.clear();
+  const onRemoveKeys = () => {
+    localStorage.removeItem("ID_USER");
+    setIdUser(null);
+  };
 
   return (
     <div className="footer__user">
