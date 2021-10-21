@@ -35,7 +35,7 @@ const SingIn = ({ idUser, setIdUser }) => {
       console.log("Пользователь найден!");
     } else {
       const newUser = {
-        id: Date.now(),
+        id: Date.now().toString(),
         f_name: first_name,
         l_name: last_name,
         email,
@@ -45,6 +45,8 @@ const SingIn = ({ idUser, setIdUser }) => {
       };
 
       users.push(newUser);
+
+      console.log(users);
 
       localStorage.setItem("NEW_USER", JSON.stringify(newUser));
       localStorage.setItem("ALL_USERS", JSON.stringify(users));

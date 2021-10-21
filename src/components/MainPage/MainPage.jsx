@@ -6,14 +6,16 @@ import Pagination from "./Pagination/Pagination";
 
 import "./MainPage.scss";
 
-const MainPage = () => {
+const MainPage = ({ flag }) => {
   const [articles, setArticles] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const articlesPerPage = 6;
 
   useEffect(() => {
-    setArticles(JSON.parse(localStorage.getItem("ALL_ARTICLES")) || []);
-  }, []);
+    const articles = JSON.parse(localStorage.getItem("ALL_ARTICLES")) || [];
+    const sortArticles = articles.sort((a, b) => (a.count < b.count ? 1 : -1));
+    setArticles(sortArticles);
+  }, [flag]);
 
   const lastArticleIndex = currentPage * articlesPerPage;
   const firstArticleIndex = lastArticleIndex - articlesPerPage;
@@ -28,7 +30,7 @@ const MainPage = () => {
         <main className="main">
           <div className="container">
             <div className="main__wrapper">
-              <PopularArticles />
+              <PopularArticles articles={articles} />
               <div className="main__popular">
                 <h1 className="main__popular-title">Popular articles</h1>
                 <div className="main__popular-content">

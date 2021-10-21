@@ -20,8 +20,8 @@ const Profile = () => {
       .required("Please enter a last name."),
     description: yup
       .string()
-      .min(80, "Must be between 80 and 120 characters.")
-      .max(120, "Must be between 80 and 120 characters.")
+      .min(50, "Must be between 50 and 120 characters.")
+      .max(120, "Must be between 50 and 120 characters.")
       .required("Please enter a description."),
   });
 

@@ -6,6 +6,7 @@ import {
   LogIn,
   SingIn,
   Profile,
+  AddArticle,
 } from "../components";
 
 const routes = [
@@ -42,6 +43,12 @@ const routes = [
   {
     path: "/profile/:id",
     component: Profile,
+    exact: true,
+    withAuth: true,
+  },
+  {
+    path: "/addArticle",
+    component: AddArticle,
     exact: true,
     withAuth: true,
   },

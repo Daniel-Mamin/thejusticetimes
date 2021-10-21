@@ -8,7 +8,7 @@ import Image_5 from "../assets/img/image-5.png";
 
 const allArticles = [
   {
-    id: 1,
+    id: "1",
     date: format(new Date(), "MMM d"),
     tag: "#Typography",
     title: "Humane Typography in the Digital Age",
@@ -31,7 +31,7 @@ const allArticles = [
     id_user: "i123",
   },
   {
-    id: 2,
+    id: "2",
     date: format(new Date(), "MMM d"),
     tag: "#Typography",
     title: "Humane Typography in the Digital Age",
@@ -53,7 +53,7 @@ const allArticles = [
     id_user: "i123",
   },
   {
-    id: 3,
+    id: "3",
     date: format(new Date(), "MMM d"),
     tag: "#Typography",
     title: "Johannes Gutenberg: The Birth of Movable...",
@@ -75,7 +75,7 @@ const allArticles = [
     id_user: "i1222",
   },
   {
-    id: 4,
+    id: "4",
     date: format(new Date(), "MMM d"),
     tag: "#Typography",
     title: "The Origins of Social Stationery Lettering",
@@ -98,7 +98,7 @@ const allArticles = [
     id_user: "i1222",
   },
   {
-    id: 5,
+    id: "5",
     date: format(new Date(), "MMM d"),
     tag: "#Typography",
     title: "Perfecting the Art of Perfection",
@@ -120,7 +120,7 @@ const allArticles = [
     id_user: "i123",
   },
   {
-    id: 6,
+    id: "6",
     date: format(new Date(), "MMM d"),
     tag: "#Typography",
     title: "A Brief History of Typography",
@@ -143,7 +143,7 @@ const allArticles = [
     id_user: "i2412",
   },
   {
-    id: 7,
+    id: "7",
     date: format(new Date(), "MMM d"),
     tag: "#Typography",
     title: "Johannes Gutenberg: The Birth of Movable...",
@@ -165,7 +165,7 @@ const allArticles = [
     id_user: "i2412",
   },
   {
-    id: 8,
+    id: "8",
     date: format(new Date(), "MMM d"),
     tag: "#Typography",
     title: "The Origins of Social Stationery Lettering",
@@ -188,7 +188,7 @@ const allArticles = [
     id_user: "i2412",
   },
   {
-    id: 9,
+    id: "9",
     date: format(new Date(), "MMM d"),
     tag: "#Typography",
     title: "Perfecting the Art of Perfection",

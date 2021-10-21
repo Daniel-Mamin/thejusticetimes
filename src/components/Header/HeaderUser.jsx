@@ -13,8 +13,8 @@ const HeaderUser = ({ setIdUser }) => {
       link: "/myArticles",
     },
     {
-      name: "Add articles",
-      link: "/addArticles",
+      name: "Add article",
+      link: "/addArticle",
     },
     {
       name: "Profile",

@@ -6,5 +6,6 @@ export { default as Article } from "./Article/Article";
 export { default as LogIn } from "./LogIn/LogIn";
 export { default as SingIn } from "./SingIn/SingIn";
 export { default as Profile } from "./Profile/Profile";
+export { default as AddArticle } from "./AddArticle/AddArticle";
 export { default as ProtectedRoute } from "./ProtectedRoute/ProtectedRoute";
 export { default as NoMatch } from "./NoMatch/NoMatch";

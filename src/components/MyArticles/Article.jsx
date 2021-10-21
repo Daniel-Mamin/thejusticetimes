@@ -22,7 +22,10 @@ const Article = ({
         <span className="tag">{tag}</span>
       </div>
       <h2 className="my-articles__item-title">{title}</h2>
-      <p className="my-articles__item-description">{description}</p>
+      <p
+        className="my-articles__item-description"
+        dangerouslySetInnerHTML={{ __html: description }}
+      />
       <div className="main__popular-list__item-user">
         <img className="user-avatar" src={avatar} alt="user-avatar" />
         <span className="user-name">{`${f_name} ${l_name}`}</span>

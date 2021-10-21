@@ -1,13 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import users from "../../../../mocks/users";
 import views from "../../../../assets/img/views.svg";
 
-const PopularArticles = () => {
+const PopularArticles = ({ articles }) => {
   const { date, tag, title, description, count, image, id, id_user } =
-    JSON.parse(localStorage.getItem("ALL_ARTICLES"))[0];
-
+    articles[0];
+  const users = JSON.parse(localStorage.getItem("ALL_USERS"));
   const user = users.find((user) => user.id === id_user);
 
   return (
@@ -19,7 +18,7 @@ const PopularArticles = () => {
         <div className="main__views__content">
           <span className="tag">{tag}</span>
           <h2>{title}</h2>
-          <p>{description.substr(0, 380)}</p>
+          <p dangerouslySetInnerHTML={{ __html: description.substr(0, 380) }} />
           <div className="main__views__user-content">
             <img className="user-avatar" src={user.avatar} alt="user-avatar" />
             <span className="user-name">{`${user.f_name} ${user.l_name}`}</span>

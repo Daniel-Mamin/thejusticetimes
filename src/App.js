@@ -10,12 +10,14 @@ import "./App.scss";
 
 const App = () => {
   const [idUser, setIdUser] = useState();
+  const [flag, setFlag] = useState(true);
 
   useEffect(() => setIdUser(localStorage.getItem("ID_USER")), [idUser]);
+
   useEffect(() => {
     localStorage.setItem("ALL_ARTICLES", JSON.stringify(getSortedArray()));
     localStorage.setItem("ALL_USERS", JSON.stringify(users));
-  }, [idUser]);
+  }, []);
 
   return (
     <div className="all-content">
@@ -29,6 +31,8 @@ const App = () => {
               component={route.component}
               exact
               idUser={idUser}
+              flag={flag}
+              setFlag={setFlag}
             />
           ) : (
             <Route
@@ -36,7 +40,12 @@ const App = () => {
               path={route.path}
               exact={route.exact}
               render={() => (
-                <route.component idUser={idUser} setIdUser={setIdUser} />
+                <route.component
+                  idUser={idUser}
+                  setIdUser={setIdUser}
+                  flag={flag}
+                  setFlag={setFlag}
+                />
               )}
             />
           )

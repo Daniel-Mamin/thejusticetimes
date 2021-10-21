@@ -7,7 +7,7 @@ import views from "../../assets/img/views.svg";
 
 const Article = () => {
   const { id } = useParams();
-
+  console.log(id);
   const {
     article: { date, tag, title, description, count, category, image },
     user: { f_name, l_name, avatar },
@@ -33,7 +33,7 @@ const Article = () => {
               <img src={image} alt="Image" />
             </div>
             <div className="article-content__description">
-              <p>{description}</p>
+              <p dangerouslySetInnerHTML={{ __html: description }} />
             </div>
             <div className="article-content__info">
               <div className="article-content__info-user">
