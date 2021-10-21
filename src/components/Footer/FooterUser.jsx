@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 const FooterUser = ({ setIdUser }) => {
+  const id = localStorage.getItem("ID_USER");
   const userList = [
     {
       name: "All articles",
@@ -13,11 +14,11 @@ const FooterUser = ({ setIdUser }) => {
     },
     {
       name: "Add articles",
-      link: "addArticles",
+      link: "/addArticles",
     },
     {
       name: "Profile",
-      link: "/profile",
+      link: `/profile/${id}`,
     },
   ];
 

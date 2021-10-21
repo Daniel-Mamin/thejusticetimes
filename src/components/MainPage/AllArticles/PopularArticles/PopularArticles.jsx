@@ -8,7 +8,7 @@ const PopularArticles = () => {
   const { date, tag, title, description, count, image, id, id_user } =
     JSON.parse(localStorage.getItem("ALL_ARTICLES"))[0];
 
-  const user = users.find((user) => user.id == id_user);
+  const user = users.find((user) => user.id === id_user);
 
   return (
     <Link to={`/article/${id}`}>

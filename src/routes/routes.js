@@ -40,10 +40,10 @@ const routes = [
     withAuth: false,
   },
   {
-    path: "/profile",
+    path: "/profile/:id",
     component: Profile,
     exact: true,
-    withAuth: false,
+    withAuth: true,
   },
   {
     path: "/*",

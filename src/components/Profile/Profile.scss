@@ -1,6 +1,7 @@
 .profile {
   display: flex;
   flex: 1;
+  padding: 80px 0;
   &__form {
     display: flex;
     &-avatar {
@@ -51,7 +52,16 @@
         p {
           display: flex;
           flex-direction: column;
+          position: relative;
         }
+      }
+      &__error {
+        font-size: 11px;
+        line-height: 14px;
+        color: #CF4949;
+        position: absolute;
+        bottom: -15px;
+        left: 0;
       }
       &__label {
         margin-bottom: 12px;

@@ -15,7 +15,7 @@ const App = () => {
   useEffect(() => {
     localStorage.setItem("ALL_ARTICLES", JSON.stringify(getSortedArray()));
     localStorage.setItem("ALL_USERS", JSON.stringify(users));
-  }, []);
+  }, [idUser]);
 
   return (
     <div className="all-content">

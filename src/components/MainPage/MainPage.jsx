@@ -4,8 +4,6 @@ import PopularArticles from "./AllArticles/PopularArticles/PopularArticles";
 import AllArticles from "./AllArticles/AllArticles";
 import Pagination from "./Pagination/Pagination";
 
-import getSortedArray from "../../services/getSortedArray";
-
 import "./MainPage.scss";
 
 const MainPage = () => {
@@ -26,7 +24,7 @@ const MainPage = () => {
 
   return (
     <>
-      {articles.length != 0 ? (
+      {articles.length !== 0 ? (
         <main className="main">
           <div className="container">
             <div className="main__wrapper">

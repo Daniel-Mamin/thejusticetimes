@@ -4,7 +4,7 @@ import users from "../../../../mocks/users";
 import views from "../../../../assets/img/views.svg";
 
 const Article = ({ image, tag, title, description, date, count, id_user }) => {
-  const user = users.find((user) => user.id == id_user);
+  const user = users.find((user) => user.id === id_user);
 
   return (
     <li className="main__popular-list__item">

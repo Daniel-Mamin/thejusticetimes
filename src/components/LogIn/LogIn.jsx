@@ -70,7 +70,7 @@ const LogIn = ({ idUser, setIdUser }) => {
                       name="email"
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      value={values.name}
+                      value={values.email}
                     />
                   </p>
                   {touched.email && errors.email && (
@@ -87,7 +87,7 @@ const LogIn = ({ idUser, setIdUser }) => {
                       name="password"
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      value={values.name}
+                      value={values.password}
                     />
                   </p>
                   {touched.password && errors.password && (

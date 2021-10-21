@@ -16,7 +16,7 @@ const MyArticles = () => {
       <div className="container">
         <div
           className={`my-articles__wrapper${
-            articles.length == 0 ? " my-articles__wrapper_no" : ""
+            articles.length === 0 ? " my-articles__wrapper_no" : ""
           }`}
         >
           <div className="my-articles-user">
@@ -29,7 +29,7 @@ const MyArticles = () => {
             </div>
           </div>
           <div className="my-articles-content">
-            {articles.length != 0 ? (
+            {articles.length !== 0 ? (
               <ul className="my-articles__list">
                 {articles.map((article) => (
                   <Article

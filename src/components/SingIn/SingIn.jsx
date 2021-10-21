@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Redirect } from "react-router-dom";
 import * as yup from "yup";
 import { Formik } from "formik";
@@ -87,12 +87,13 @@ const SingIn = ({ idUser, setIdUser }) => {
                       First name
                     </label>
                     <input
+                      id="first_name"
                       className="form__input"
                       type="text"
                       name="first_name"
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      value={values.name}
+                      value={values.first_name}
                     />
                   </p>
                   {touched.first_name && errors.first_name && (
@@ -108,7 +109,7 @@ const SingIn = ({ idUser, setIdUser }) => {
                       name="last_name"
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      value={values.name}
+                      value={values.last_name}
                     />
                   </p>
                   {touched.last_name && errors.last_name && (
@@ -125,7 +126,7 @@ const SingIn = ({ idUser, setIdUser }) => {
                       name="email"
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      value={values.name}
+                      value={values.email}
                     />
                   </p>
                   {touched.email && errors.email && (
@@ -142,7 +143,7 @@ const SingIn = ({ idUser, setIdUser }) => {
                       name="password"
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      value={values.name}
+                      value={values.password}
                     />
                   </p>
                   {touched.password && errors.password && (
