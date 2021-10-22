@@ -16,9 +16,15 @@ const PopularArticles = ({ articles }) => {
           <img src={image} alt="Image" />
         </div>
         <div className="main__views__content">
-          <span className="tag">{tag}</span>
+          <div>
+            <span className="tag">{tag}</span>
+          </div>
           <h2>{title}</h2>
-          <p dangerouslySetInnerHTML={{ __html: description.substr(0, 380) }} />
+          <p
+            dangerouslySetInnerHTML={{
+              __html: description.substr(0, 300) + "...",
+            }}
+          />
           <div className="main__views__user-content">
             <img className="user-avatar" src={user.avatar} alt="user-avatar" />
             <span className="user-name">{`${user.f_name} ${user.l_name}`}</span>
