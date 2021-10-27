@@ -1,18 +1,22 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Redirect } from "react-router-dom";
 import * as yup from "yup";
+import axios from "axios";
 import { Formik } from "formik";
 
+import AuthContext from "../../context/AuthContext";
 import NoPhoto from "../../assets/img/noPhoto.png";
 import "./SingIn.scss";
 
 const SingIn = ({ idUser, setIdUser }) => {
+  const { login, isLogin } = useContext(AuthContext);
+
   const validationSchema = yup.object().shape({
-    first_name: yup
+    f_name: yup
       .string()
       .min(3, "Must be more than 3 characters.")
       .required("Please enter a first name."),
-    last_name: yup
+    l_name: yup
       .string()
       .min(3, "Must be more than 3 characters.")
       .required("Please enter a first name."),
@@ -27,45 +31,69 @@ const SingIn = ({ idUser, setIdUser }) => {
       .required("Please enter a password."),
   });
 
-  const onSubmitForm = ({ first_name, last_name, email, password }) => {
-    const users = JSON.parse(localStorage.getItem("ALL_USERS"));
-    const user = users.find((user) => user.email === email);
-
-    if (user) {
-      console.log("Пользователь найден!");
-    } else {
-      const newUser = {
-        id: Date.now().toString(),
-        f_name: first_name,
-        l_name: last_name,
-        email,
-        password,
-        description: `${first_name} odio nisi, euismod in, pharetra a, ultricies in, diam. Sed arcu.`,
-        avatar: NoPhoto,
-      };
-
-      users.push(newUser);
-
-      console.log(users);
-
-      localStorage.setItem("NEW_USER", JSON.stringify(newUser));
-      localStorage.setItem("ALL_USERS", JSON.stringify(users));
-      localStorage.setItem("ID_USER", newUser.id);
-      setIdUser(newUser.id);
+  const onSubmitForm = async ({ f_name, l_name, email, password }) => {
+    try {
+      await axios
+        .post(
+          "/api/auth/registration",
+          { f_name, l_name, email, password },
+          { headers: { "Content-Type": "application/json" } }
+        )
+        .then((response) => {
+          login(response.data.token, response.data.userId);
+        })
+        .catch((error) => {
+          if (error.response) {
+            console.log(error.response.data);
+            console.log(error.response.status);
+            console.log(error.response.headers);
+          } else if (error.request) {
+            console.log("Request", error.request);
+          } else {
+            console.log("Error", error.message);
+          }
+        });
+    } catch (e) {
+      console.log(e);
     }
+    // const users = JSON.parse(localStorage.getItem("ALL_USERS"));
+    // const user = users.find((user) => user.email === email);
+    //
+    // if (user) {
+    //   console.log("Пользователь найден!");
+    // } else {
+    //   const newUser = {
+    //     id: Date.now().toString(),
+    //     f_name: first_name,
+    //     l_name: last_name,
+    //     email,
+    //     password,
+    //     description: `${first_name} odio nisi, euismod in, pharetra a, ultricies in, diam. Sed arcu.`,
+    //     avatar: NoPhoto,
+    //   };
+    //
+    //   users.push(newUser);
+    //
+    //   console.log(users);
+    //
+    //   localStorage.setItem("NEW_USER", JSON.stringify(newUser));
+    //   localStorage.setItem("ALL_USERS", JSON.stringify(users));
+    //   localStorage.setItem("ID_USER", newUser.id);
+    //   setIdUser(newUser.id);
+    // }
   };
 
   return (
     <>
-      {idUser && <Redirect to="/" />}
+      {isLogin && <Redirect to="/" />}
       <div className="singin">
         <div className="container">
           <div className="singin__wrapper">
             <h1 className="singin__title">Create your free account</h1>
             <Formik
               initialValues={{
-                first_name: "",
-                last_name: "",
+                f_name: "",
+                l_name: "",
                 email: "",
                 password: "",
               }}
@@ -89,17 +117,17 @@ const SingIn = ({ idUser, setIdUser }) => {
                       First name
                     </label>
                     <input
-                      id="first_name"
+                      id="f_name"
                       className="form__input"
                       type="text"
-                      name="first_name"
+                      name="f_name"
                       onChange={handleChange}
                       onBlur={handleBlur}
                       value={values.first_name}
                     />
                   </p>
-                  {touched.first_name && errors.first_name && (
-                    <p className="form__error">{errors.first_name}</p>
+                  {touched.f_name && errors.f_name && (
+                    <p className="form__error">{errors.f_name}</p>
                   )}
                   <p>
                     <label htmlFor="last_name" className="form__label">
@@ -108,14 +136,14 @@ const SingIn = ({ idUser, setIdUser }) => {
                     <input
                       className="form__input"
                       type="text"
-                      name="last_name"
+                      name="l_name"
                       onChange={handleChange}
                       onBlur={handleBlur}
                       value={values.last_name}
                     />
                   </p>
-                  {touched.last_name && errors.last_name && (
-                    <p className="form__error">{errors.last_name}</p>
+                  {touched.l_name && errors.l_name && (
+                    <p className="form__error">{errors.l_name}</p>
                   )}
                   <p>
                     <label htmlFor="email" className="form__label">
