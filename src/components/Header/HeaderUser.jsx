@@ -2,10 +2,9 @@ import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import AuthContext from "../../context/AuthContext";
 
-const HeaderUser = ({ setIdUser }) => {
-  const { logout } = useContext(AuthContext);
+const HeaderUser = () => {
+  const { logout, id } = useContext(AuthContext);
 
-  const id = localStorage.getItem("ID_USER");
   const userList = [
     {
       name: "All articles",
@@ -24,11 +23,6 @@ const HeaderUser = ({ setIdUser }) => {
       link: `/profile/${id}`,
     },
   ];
-
-  // const onRemoveKeys = () => {
-  //   localStorage.removeItem("ID_USER");
-  //   setIdUser(null);
-  // };
 
   return (
     <div className="header__user">

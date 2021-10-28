@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Redirect } from "react-router-dom";
 import * as yup from "yup";
 import axios from "axios";
@@ -8,8 +8,9 @@ import AuthContext from "../../context/AuthContext";
 import NoPhoto from "../../assets/img/noPhoto.png";
 import "./SingIn.scss";
 
-const SingIn = ({ idUser, setIdUser }) => {
+const SingIn = () => {
   const { login, isLogin } = useContext(AuthContext);
+  const [errorMessage, setErrorMessage] = useState(null);
 
   const validationSchema = yup.object().shape({
     f_name: yup
@@ -33,54 +34,22 @@ const SingIn = ({ idUser, setIdUser }) => {
 
   const onSubmitForm = async ({ f_name, l_name, email, password }) => {
     try {
-      await axios
-        .post(
-          "/api/auth/registration",
-          { f_name, l_name, email, password },
-          { headers: { "Content-Type": "application/json" } }
-        )
-        .then((response) => {
-          login(response.data.token, response.data.userId);
-        })
-        .catch((error) => {
-          if (error.response) {
-            console.log(error.response.data);
-            console.log(error.response.status);
-            console.log(error.response.headers);
-          } else if (error.request) {
-            console.log("Request", error.request);
-          } else {
-            console.log("Error", error.message);
-          }
-        });
-    } catch (e) {
-      console.log(e);
+      const response = await axios.post(
+        "/api/auth/registration",
+        { f_name, l_name, email, password },
+        { headers: { "Content-Type": "application/json" } }
+      );
+      setErrorMessage(null);
+      login(response.data.token, response.data.userId);
+    } catch (error) {
+      if (error.response) {
+        setErrorMessage(error.response.data.message);
+      } else if (error.request) {
+        console.log("Request", error.request);
+      } else {
+        console.log("Error", error.message);
+      }
     }
-    // const users = JSON.parse(localStorage.getItem("ALL_USERS"));
-    // const user = users.find((user) => user.email === email);
-    //
-    // if (user) {
-    //   console.log("Пользователь найден!");
-    // } else {
-    //   const newUser = {
-    //     id: Date.now().toString(),
-    //     f_name: first_name,
-    //     l_name: last_name,
-    //     email,
-    //     password,
-    //     description: `${first_name} odio nisi, euismod in, pharetra a, ultricies in, diam. Sed arcu.`,
-    //     avatar: NoPhoto,
-    //   };
-    //
-    //   users.push(newUser);
-    //
-    //   console.log(users);
-    //
-    //   localStorage.setItem("NEW_USER", JSON.stringify(newUser));
-    //   localStorage.setItem("ALL_USERS", JSON.stringify(users));
-    //   localStorage.setItem("ID_USER", newUser.id);
-    //   setIdUser(newUser.id);
-    // }
   };
 
   return (
@@ -187,6 +156,11 @@ const SingIn = ({ idUser, setIdUser }) => {
                   >
                     Create Account
                   </button>
+                  {errorMessage ? (
+                    <span className="error">{errorMessage}</span>
+                  ) : (
+                    <span></span>
+                  )}
                 </form>
               )}
             </Formik>

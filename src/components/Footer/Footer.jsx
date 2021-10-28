@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 
+import AuthContext from "../../context/AuthContext";
 import FooterGuest from "./FooterGuest";
 import FooterUser from "./FooterUser";
 
 import "./Footer.scss";
 import Logo from "../../assets/img/logoWhite.svg";
 
-const Footer = ({ idUser, setIdUser }) => {
+const Footer = () => {
+  const { isLogin } = useContext(AuthContext);
   return (
     <footer className="footer">
       <div className="container">
@@ -15,7 +17,7 @@ const Footer = ({ idUser, setIdUser }) => {
           <Link to="/">
             <img src={Logo} alt="Logo" />
           </Link>
-          {idUser ? <FooterUser setIdUser={setIdUser} /> : <FooterGuest />}
+          {isLogin ? <FooterUser /> : <FooterGuest />}
         </div>
         <hr />
         <div className="footer__copyright">

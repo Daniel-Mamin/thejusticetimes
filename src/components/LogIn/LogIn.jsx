@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Formik } from "formik";
 import * as yup from "yup";
 import axios from "axios";
@@ -7,8 +7,9 @@ import { Link, Redirect } from "react-router-dom";
 import AuthContext from "../../context/AuthContext";
 import "./LogIn.scss";
 
-const LogIn = ({ idUser, setIdUser }) => {
+const LogIn = () => {
   const { login, isLogin } = useContext(AuthContext);
+  const [errorMessage, setErrorMessage] = useState(null);
 
   const validationSchema = yup.object().shape({
     email: yup
@@ -24,41 +25,22 @@ const LogIn = ({ idUser, setIdUser }) => {
 
   const onSubmitForm = async ({ email, password }) => {
     try {
-      await axios
-        .post(
-          "/api/auth/login",
-          { email, password },
-          { headers: { "Content-Type": "application/json" } }
-        )
-        .then((response) => {
-          console.log(response.data);
-          login(response.data.token, response.data.userId);
-        })
-        .catch((error) => {
-          if (error.response) {
-            console.log(error.response.data);
-            console.log(error.response.status);
-            console.log(error.response.headers);
-          } else if (error.request) {
-            console.log("Request", error.request);
-          } else {
-            console.log("Error", error.message);
-          }
-        });
-    } catch (e) {
-      console.log(e);
+      const response = await axios.post(
+        "/api/auth/login",
+        { email, password },
+        { headers: { "Content-Type": "application/json" } }
+      );
+      setErrorMessage(null);
+      login(response.data.token, response.data.userId);
+    } catch (error) {
+      if (error.response) {
+        setErrorMessage(error.response.data.message);
+      } else if (error.request) {
+        console.log("Request", error.request);
+      } else {
+        console.log("Error", error.message);
+      }
     }
-    // const users = JSON.parse(localStorage.getItem("ALL_USERS"));
-    // const user = users.find(
-    //   (user) => user.email === email && user.password === password
-    // );
-    //
-    // if (user) {
-    //   localStorage.setItem("ID_USER", user.id);
-    //   setIdUser(user.id);
-    // } else {
-    //   console.log("Пользователь не найден!");
-    // }
   };
 
   return (
@@ -130,6 +112,11 @@ const LogIn = ({ idUser, setIdUser }) => {
                   >
                     Create Account
                   </button>
+                  {errorMessage ? (
+                    <span className="error">{errorMessage}</span>
+                  ) : (
+                    <span></span>
+                  )}
                 </form>
               )}
             </Formik>

@@ -17,11 +17,11 @@ const useAuth = () => {
     );
   }, []);
 
-  const logout = () => {
+  const logout = useCallback(() => {
     setToken(null);
     setId(null);
     localStorage.removeItem("userData");
-  };
+  }, []);
 
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem("userData"));

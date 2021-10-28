@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
 
+import AuthContext from "../../context/AuthContext";
+
 const FooterUser = ({ setIdUser }) => {
-  const id = localStorage.getItem("ID_USER");
+  const { id, logout } = useContext(AuthContext);
+
   const userList = [
     {
       name: "All articles",
@@ -22,11 +25,6 @@ const FooterUser = ({ setIdUser }) => {
     },
   ];
 
-  const onRemoveKeys = () => {
-    localStorage.removeItem("ID_USER");
-    setIdUser(null);
-  };
-
   return (
     <div className="footer__user">
       <ul className="footer__user-list">
@@ -41,7 +39,7 @@ const FooterUser = ({ setIdUser }) => {
           </NavLink>
         ))}
       </ul>
-      <button className="footer__btn" onClick={onRemoveKeys}>
+      <button className="footer__btn" onClick={logout}>
         Logout
       </button>
     </div>

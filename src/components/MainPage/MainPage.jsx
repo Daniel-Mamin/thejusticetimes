@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
+import axios from "axios";
 
 import PopularArticles from "./AllArticles/PopularArticles/PopularArticles";
 import AllArticles from "./AllArticles/AllArticles";
@@ -6,16 +7,21 @@ import Pagination from "./Pagination/Pagination";
 
 import "./MainPage.scss";
 
-const MainPage = ({ flag }) => {
+const MainPage = () => {
   const [articles, setArticles] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const articlesPerPage = 6;
 
+  const fetchArticles = useCallback(async () => {
+    try {
+      const response = await axios.get("/api/article/");
+      setArticles(response.data);
+    } catch (error) {}
+  }, []);
+
   useEffect(() => {
-    const articles = JSON.parse(localStorage.getItem("ALL_ARTICLES")) || [];
-    const sortArticles = articles.sort((a, b) => (a.count < b.count ? 1 : -1));
-    setArticles(sortArticles);
-  }, [flag]);
+    fetchArticles();
+  }, [fetchArticles]);
 
   const lastArticleIndex = currentPage * articlesPerPage;
   const firstArticleIndex = lastArticleIndex - articlesPerPage;
@@ -31,18 +37,18 @@ const MainPage = ({ flag }) => {
           <div className="container">
             <div className="main__wrapper">
               <PopularArticles articles={articles} />
-              <div className="main__popular">
-                <h1 className="main__popular-title">Popular articles</h1>
-                <div className="main__popular-content">
-                  <AllArticles articles={currentArticles} />
-                  <Pagination
-                    disabledPrev={currentPage}
-                    disabledNext={lastArticleIndex >= articles.length}
-                    nextPage={nextPage}
-                    prevPage={prevPage}
-                  />
-                </div>
-              </div>
+              {/*<div className="main__popular">*/}
+              {/*  <h1 className="main__popular-title">Popular articles</h1>*/}
+              {/*  <div className="main__popular-content">*/}
+              {/*    <AllArticles articles={currentArticles} />*/}
+              {/*    <Pagination*/}
+              {/*      disabledPrev={currentPage}*/}
+              {/*      disabledNext={lastArticleIndex >= articles.length}*/}
+              {/*      nextPage={nextPage}*/}
+              {/*      prevPage={prevPage}*/}
+              {/*    />*/}
+              {/*  </div>*/}
+              {/*</div>*/}
             </div>
           </div>
         </main>

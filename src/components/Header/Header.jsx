@@ -8,7 +8,7 @@ import AuthContext from "../../context/AuthContext";
 import "./Header.scss";
 import Logo from "../../assets/img/logoBlack.svg";
 
-const Header = ({ idUser, setIdUser }) => {
+const Header = () => {
   const { isLogin } = useContext(AuthContext);
 
   return (
@@ -20,7 +20,7 @@ const Header = ({ idUser, setIdUser }) => {
               <img src={Logo} alt="Logo" />
             </Link>
           </div>
-          {isLogin ? <HeaderUser setIdUser={setIdUser} /> : <HeaderGuest />}
+          {isLogin ? <HeaderUser /> : <HeaderGuest />}
         </div>
       </div>
       <hr />
